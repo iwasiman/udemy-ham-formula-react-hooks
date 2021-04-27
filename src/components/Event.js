@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 
 import {DELETE_EVENT} from '../actions' // actions/index.js を省略
+import AppContext from '../contexts/AppContext'
+
 // <Event key={index} row={row} dispatchFunc={dispatchFunc} /> の{}の中と等しくないと動かない
 // 講座ではrowでなくevent、dispatch という変数名。
-const Event =({ index, row, dispatchFunc }) => {
+const Event =({ index, row }) => {
+  const {dispatchFunc} = useContext(AppContext)
+
   console.log("Event.js Event() execute,", {row}, {dispatchFunc});
   const handleClickDeleteBtn = () => {
     const result = window.confirm(`イベント(id=${row.id})を削除するのはまことでござるか?`)

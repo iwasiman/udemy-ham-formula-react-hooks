@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import {
   CREATE_EVENT,
-  DELETE_ALL_EVENTS} from '../actions' // actions/index.js を省略
+  DELETE_ALL_EVENTS
+} from '../actions' // actions/index.js を省略
+import AppContext from '../contexts/AppContext'
 
 // propsで受け取るとき {}が必要。
-const EventForm = ({state, dispatchFunc}) => {
-  //App.jsとEventForm.jsで両方このuseReducerをしてしまうと、変数stateは別々になる。
+//const EventForm = ({state, dispatchFunc}) => {
+const EventForm = () => {
+    //App.jsとEventForm.jsで両方このuseReducerをしてしまうと、変数stateは別々になる。
   //const [state, dispatchFunc] = useReducer(reducer, []) // 第3引数は初期化処理、今回は不要
+
+  const {state, dispatchFunc} = useContext(AppContext)
+
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
