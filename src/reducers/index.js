@@ -12,7 +12,9 @@
 //   {id: 3, title: 'たいとる3', body: 'ぼでぃー3'},
 // ]
 
+// ここの変数名は何でもよい模様。インポートするAppではreducerと名付けている
 const events = (state = [], action) => {
+  console.log("reducer/index events() in", {state}, {action});
   switch(action.type) {
     case 'CREATE_EVENT':
       const newEvent = {title: action.title, body: action.body}
@@ -20,7 +22,8 @@ const events = (state = [], action) => {
       const id = length === 0 ? 1: state[length -1].id + 1
       return [...state, {id, ...newEvent}] // {}の中のid: 変数id がショートハンドで短く書ける。
     case 'DELETE_EVENT':
-      return state
+      // 配列の中から渡ってきたIDのObjだけを削除して返す
+      return state.filter(row => row.id !== action.id)
     case 'DELETE_ALL_EVENTS':
       return []
     default:
