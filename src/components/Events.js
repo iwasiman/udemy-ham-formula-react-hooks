@@ -11,6 +11,7 @@ const Events = () => {
 //   <AppContext.Consumer>
 //   {value => { return <div>{value}</div>}}
 // </AppContext.Consumer>
+console.log("Events", state)
 
 return (
     <>
@@ -25,7 +26,7 @@ return (
 
         </thead>
         <tbody>
-          { state.map((row, index) => (<Event key={index} row={row} />))}
+          { state.events.map((row, index) => (<Event key={index} row={row} />))}
         </tbody>
       </table>
     </>
